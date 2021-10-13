@@ -2,60 +2,40 @@
 {
     public class BankAccount
     {
-        private int _id;
-        private decimal _balance;
-        private BankAccountTypes _accountType;
 
         private static int idGenerator = 1;
 
-        private static void AssignId()
-        {
-            idGenerator++;
-        }
+        public int Id { get; private set; }
+        public decimal Balance { get; set; }
+        public BankAccountTypes AccountType { get; set; }
 
         public BankAccount()
         {
-            _id = idGenerator;
-            AssignId();
+            Id = idGenerator;
+            idGenerator++;
         }
 
         public BankAccount(decimal money) :this()
         {
-            _balance = money;
+            Balance = money;
         }
 
         public BankAccount(BankAccountTypes accounType) : this()
         {
-            _accountType = accounType;
+            AccountType = accounType;
         }
 
         public BankAccount(decimal money, BankAccountTypes accounType) : this()
         {
-            _balance = money;
-            _accountType = accounType;
-        }
-
-        public int GetId()
-        {
-            return _id;
-        }
-
-        public decimal GetBalance()
-        {
-            return _balance;
-        }
-
-
-        public BankAccountTypes GetAccountType()
-        {
-            return _accountType;
+            Balance = money;
+            AccountType = accounType;
         }
 
         public override string ToString()
         {
-            return $"ID вашего счета: {_id}\n" +
-                    $"Тип вашего счета: {_accountType}\n" +
-                    $"На вашем счету: {_balance}$\n";
+            return $"ID вашего счета: {Id}\n" +
+                    $"Тип вашего счета: {AccountType}\n" +
+                    $"На вашем счету: {Balance}$\n";
         }
     }
 

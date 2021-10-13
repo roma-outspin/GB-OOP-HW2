@@ -6,14 +6,23 @@
         private decimal _balance;
         private BankAccountTypes _accountType;
 
+        private static int idGenerator = 1;
+
+        private static void AssignId()
+        {
+            idGenerator++;
+        }
+
+        public BankAccount()
+        {
+            _id = idGenerator;
+            AssignId();
+        }
+
+
         public int GetId()
         {
             return _id;
-        }
-
-        public void SetId(int id)
-        {
-            _id = id;
         }
 
         public decimal GetBalance()

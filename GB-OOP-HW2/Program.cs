@@ -6,15 +6,20 @@ namespace GB_OOP_HW2
     {
         static void Main(string[] args)
         {
-            var myAccount = new BankAccount();
+            for(int i = 0; i<10;i++)
+            {
+                var myAccount = new BankAccount();
 
-            myAccount.SetId(35);
-            myAccount.SetBalance(999.99m);
-            myAccount.SetAccountType(BankAccountTypes.Текущий);
+                myAccount.SetBalance(999.99m+i);
+                myAccount.SetAccountType(BankAccountTypes.Текущий);
 
-            Console.WriteLine($"ID моего счета: {myAccount.GetId()}\n" +
-                $"Тип моего счета: {myAccount.GetAccountType()}\n" +
-                $"На моем счету: {myAccount.GetBalance()}$\n");
+                Console.WriteLine($"ID вашего счета: {myAccount.GetId()}\n" +
+                    $"Тип вашего счета: {myAccount.GetAccountType()}\n" +
+                    $"На вашем счету: {myAccount.GetBalance()}$\n");
+            }
+
+
+
         }
     }
 }

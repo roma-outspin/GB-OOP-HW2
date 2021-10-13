@@ -19,6 +19,21 @@
             AssignId();
         }
 
+        public BankAccount(decimal money) :this()
+        {
+            _balance = money;
+        }
+
+        public BankAccount(BankAccountTypes accounType) : this()
+        {
+            _accountType = accounType;
+        }
+
+        public BankAccount(decimal money, BankAccountTypes accounType) : this()
+        {
+            _balance = money;
+            _accountType = accounType;
+        }
 
         public int GetId()
         {
@@ -30,23 +45,18 @@
             return _balance;
         }
 
-        public void SetBalance(decimal balance)
-        {
-            _balance = balance;
-        }
 
         public BankAccountTypes GetAccountType()
         {
             return _accountType;
         }
 
-        public void SetAccountType(BankAccountTypes accountType)
+        public override string ToString()
         {
-            _accountType = accountType;
+            return $"ID вашего счета: {_id}\n" +
+                    $"Тип вашего счета: {_accountType}\n" +
+                    $"На вашем счету: {_balance}$\n";
         }
-
-
-
     }
 
 }

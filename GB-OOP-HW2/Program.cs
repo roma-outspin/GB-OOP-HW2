@@ -7,27 +7,40 @@ namespace GB_OOP_HW2
         static void Main(string[] args)
         {
 
-            var account1 = new BankAccount();
-            var account2 = new BankAccount(5555.55m);
-            var account3 = new BankAccount(BankAccountTypes.Дебетовый);
-            var account4 = new BankAccount(35, BankAccountTypes.Кредитный);
-
-            var account5 = new BankAccount()
+            var myAccount1 = new BankAccount(99999.99m);
+            Console.WriteLine("Введите команды add или take для добавления/снятия денег на счет и сумму через пробел\n" +
+                "Введите exit для завершения программы\n" +
+                $"Сейчас у Вас на счету: {myAccount1.Balance}$");
+            while(true)
             {
-                Balance = 0.99m,
-                AccountType = BankAccountTypes.Депозитный
-            };
+                try
+                {
+                    var comm = Console.ReadLine().Split(' ');
+                    if (comm[0].ToLower().Equals("add"))
+                    {
+                        myAccount1.AddMoney(Convert.ToDecimal(comm[1]));
+                    } 
+                    else if(comm[0].ToLower().Equals("take"))
+                    {
+                        myAccount1.TakeOffMoney(Convert.ToDecimal(comm[1]));
+                    }
+                    else if (comm[0].ToLower().Equals("exit"))
+                    {
+                        Console.WriteLine("Завершение программы");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введите команды add или take для добавления / снятия денег на счет и сумму через пробел");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Console.WriteLine($"Ваш баланс: {myAccount1.Balance}$"); 
+            }
 
-            var account6 = new BankAccount();
-            account6.Balance = -500;
-            account6.AccountType = BankAccountTypes.Кредитный;
-
-            Console.WriteLine(account1.ToString());
-            Console.WriteLine(account2.ToString());
-            Console.WriteLine(account3.ToString());
-            Console.WriteLine(account4.ToString());
-            Console.WriteLine(account5.ToString());
-            Console.WriteLine(account6.ToString());
         }
     }
 }

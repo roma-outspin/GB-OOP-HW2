@@ -1,4 +1,6 @@
-﻿namespace GB_OOP_HW2
+﻿using System;
+
+namespace GB_OOP_HW2
 {
     public class BankAccount
     {
@@ -36,6 +38,33 @@
             return $"ID вашего счета: {Id}\n" +
                     $"Тип вашего счета: {AccountType}\n" +
                     $"На вашем счету: {Balance}$\n";
+        }
+
+        public void AddMoney(decimal summ)
+        {
+            if (summ<=0)
+            {
+                throw new ArgumentException("Сумма не может быть меньше нуля");
+            }
+
+                Balance += summ;
+        }
+
+        public bool TakeOffMoney(decimal summ)
+        {
+            if (summ<=0)
+            {
+                throw new ArgumentException("Сумма не может быть меньше нуля");
+            }
+            if (Balance >= summ)
+            {
+                Balance -= summ;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

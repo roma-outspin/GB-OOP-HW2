@@ -1,42 +1,85 @@
-﻿namespace GB_OOP_HW2
+﻿using System;
+
+namespace GB_OOP_HW2
 {
     public class BankAccount
     {
-        private int _id;
-        private decimal _balance;
-        private BankAccountTypes _accountType;
 
-        public int GetId()
+        private static int idGenerator = 1;
+
+        public int Id { get; private set; }
+        public decimal Balance { get; set; }
+        public BankAccountTypes AccountType { get; set; }
+
+        public BankAccount()
         {
-            return _id;
+            Id = idGenerator;
+            idGenerator++;
         }
 
-        public void SetId(int id)
+        public BankAccount(decimal money) : this()
         {
-            _id = id;
+            Balance = money;
         }
 
-        public decimal GetBalance()
+        public BankAccount(BankAccountTypes accounType) : this()
         {
-            return _balance;
+            AccountType = accounType;
         }
 
-        public void SetBalance(decimal balance)
+        public BankAccount(decimal money, BankAccountTypes accounType) : this()
         {
-            _balance = balance;
+            Balance = money;
+            AccountType = accounType;
         }
 
-        public BankAccountTypes GetAccountType()
+        public override string ToString()
         {
-            return _accountType;
+            return $"ID вашего счета: {Id}\n" +
+                    $"Тип вашего счета: {AccountType}\n" +
+                    $"На вашем счету: {Balance}$\n";
         }
 
-        public void SetAccountType(BankAccountTypes accountType)
+        public void AddMoney(decimal summ)
         {
-            _accountType = accountType;
+            if (summ <= 0)
+            {
+                throw new ArgumentException("Сумма не может быть меньше нуля");
+            }
+
+            Balance += summ;
         }
 
+        public bool TakeOffMoney(decimal summ)
+        {
+            if (summ <= 0)
+            {
+                throw new ArgumentException("Сумма не может быть меньше нуля");
+            }
+            if (Balance >= summ)
+            {
+                Balance -= summ;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        public bool TransferMoney(ref BankAccount sourceAccount, decimal summ)
+        {
+            if (summ <= sourceAccount.Balance)
+            {
+                sourceAccount.Balance -= summ;
+                this.Balance += summ;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 

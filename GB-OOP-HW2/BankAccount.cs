@@ -17,7 +17,7 @@ namespace GB_OOP_HW2
             idGenerator++;
         }
 
-        public BankAccount(decimal money) :this()
+        public BankAccount(decimal money) : this()
         {
             Balance = money;
         }
@@ -42,17 +42,17 @@ namespace GB_OOP_HW2
 
         public void AddMoney(decimal summ)
         {
-            if (summ<=0)
+            if (summ <= 0)
             {
                 throw new ArgumentException("Сумма не может быть меньше нуля");
             }
 
-                Balance += summ;
+            Balance += summ;
         }
 
         public bool TakeOffMoney(decimal summ)
         {
-            if (summ<=0)
+            if (summ <= 0)
             {
                 throw new ArgumentException("Сумма не может быть меньше нуля");
             }
@@ -66,6 +66,21 @@ namespace GB_OOP_HW2
                 return false;
             }
         }
+
+        public bool TransferMoney(ref BankAccount sourceAccount, decimal summ)
+        {
+            if (summ <= sourceAccount.Balance)
+            {
+                sourceAccount.Balance -= summ;
+                this.Balance += summ;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 
 }

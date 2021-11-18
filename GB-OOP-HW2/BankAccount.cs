@@ -81,6 +81,29 @@ namespace GB_OOP_HW2
             }
         }
 
+        public static bool operator ==(BankAccount first, BankAccount second)
+        {
+
+          return first.AccountType == second.AccountType && first.Balance == second.Balance;
+        }
+
+        public static bool operator !=(BankAccount first, BankAccount second)
+        {
+            return first.AccountType != second.AccountType || first.Balance != second.Balance;
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.AccountType == ((BankAccount)obj).AccountType && this.Balance == ((BankAccount)obj).Balance;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AccountType, Balance, Id);
+        }
+
+
     }
 
 }

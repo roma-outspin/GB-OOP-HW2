@@ -12,8 +12,13 @@ namespace GB_OOP_HW2
             Console.WriteLine(reverseTest.Reverse());
 
 
-            var myAccount1 = new BankAccount(99999.99m);
-            var myAccount2 = new BankAccount(666.66m);
+            var myAccount1 = new BankAccount(666.66m);
+            var myAccount2 = new BankAccount(99999.99m);
+            Console.WriteLine($"Проверка оператора == \n" +
+                $"\"аккаунт с ID {myAccount1.Id}\" == \"аккаунт с ID {myAccount2.Id}\" = {myAccount1 == myAccount2}");
+
+
+
             Console.WriteLine("Введите команды add или take для добавления/снятия денег на счет и сумму через пробел\n" +
                 "Введите exit для завершения программы\n" +
                 "Введите transfer для перевода денег с другого счета(баланс: 666.66$)" +
@@ -30,6 +35,22 @@ namespace GB_OOP_HW2
                     else if (comm[0].ToLower().Equals("take"))
                     {
                         myAccount1.TakeOffMoney(Convert.ToDecimal(comm[1]));
+                    }
+                    else if (comm[0].ToLower().Equals("=="))
+                    {
+                        Console.WriteLine(myAccount1==myAccount2);
+                    }
+                    else if (comm[0].ToLower().Equals("!="))
+                    {
+                        Console.WriteLine(myAccount1 != myAccount2);
+                    }
+                    else if (comm[0].ToLower().Equals("equals"))
+                    {
+                        Console.WriteLine(myAccount1.Equals(myAccount2));
+                    }
+                    else if (comm[0].ToLower().Equals("hash"))
+                    {
+                      Console.WriteLine($"Аккаунт1:{myAccount1.GetHashCode()}\nАккаунт2: {myAccount2.GetHashCode()}");  
                     }
                     else if (comm[0].ToLower().Equals("transfer"))
                     {
@@ -82,6 +103,8 @@ namespace GB_OOP_HW2
                 Console.WriteLine($"Ваш баланс: {myAccount1.Balance}$");
             }
 
+
+                
         }
 
         public static string[] GetEntriesFromFile(string path)
